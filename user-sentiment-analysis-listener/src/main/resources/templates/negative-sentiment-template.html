@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>We're Here to Help</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+        h2 {
+            color: #e74c3c;
+        }
+        .highlight {
+            color: #c0392b;
+            font-weight: bold;
+        }
+        .btn {
+            display: inline-block;
+            padding: 12px 20px;
+            margin-top: 20px;
+            background-color: #3498db;
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+        .footer {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #7f8c8d;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Dear <span th:text="${user.name}"></span>,</h2>
+
+    <p>We noticed that you weren't completely satisfied with your experience.</p>
+
+    <p>
+        <b>Comment</b>:
+        <em>"<span th:text="${user.comment}"></span>"</em>
+    </p>
+
+    <p>
+        <b>Rating</b>:
+        <span class="highlight" th:text="${user.ratings}"></span>
+    </p>
+
+    <p>We're really sorry for any inconvenience. Your feedback is important to us, and we want to make things right.</p>
+
+    <p>Could you help us understand what went wrong? Our support team is ready to assist you.</p>
+
+    <a th:href="${chatLink}" class="btn">Start a Chat</a>
+
+    <p>Thank you for bringing this to our attention. We hope to resolve this issue quickly for you.</p>
+
+    <p>Best regards,</p>
+    <p><strong>The Support Team</strong></p>
+
+    <p class="footer">You received this email because you recently provided feedback on our platform.</p>
+</div>
+</body>
+</html>

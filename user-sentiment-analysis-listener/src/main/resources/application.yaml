@@ -1,0 +1,48 @@
+server:
+  port: 8991
+
+spring:
+  application:
+    name: user-sentiment-analysis-listener
+  thymeleaf:
+    cache: false
+    prefix: classpath:/templates/
+    suffix: .html
+  jpa:
+    defer-datasource-initialization: true
+#  sql:
+#    init:
+#      mode: always
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ${EMAIL_ID}
+    password: ${EMAIL_PASSWORD} # eGdndyB2cWtmIHNoc2YgcWtybQ==
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enabled: true
+            required: true
+          connectiontimeout: 5000
+          timeout: 5000
+          writetimeout: 5000
+
+management:
+  prometheus:
+    metrics:
+      export:
+        enabled: true
+  endpoints:
+    web:
+      exposure:
+        include:
+          - "*"
+
+kafka:
+  bootstrap-servers: ${BOOTSTRAP_SERVERS}
+  topic:
+    groupId: ${GROUP_ID}
+    name: ${TOPIC_NAMES}
+

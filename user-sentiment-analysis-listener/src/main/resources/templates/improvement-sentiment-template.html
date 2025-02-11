@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>We Appreciate Your Feedback!</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+        h2 {
+            color: #e67e22;
+        }
+        .highlight {
+            color: #d35400;
+            font-weight: bold;
+        }
+        .btn {
+            display: inline-block;
+            padding: 12px 20px;
+            margin-top: 20px;
+            background-color: #3498db;
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+        .footer {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #7f8c8d;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Dear <span th:text="${user.name}"></span>,</h2>
+
+    <p>Thank you for your purchase! We truly appreciate your support.</p>
+
+    <p>
+        <b>Comment</b>:
+        <em>"<span th:text="${user.comment}"></span>"</em>
+    </p>
+
+    <p>
+        <b>Rating</b>:
+        <span class="highlight" th:text="${user.ratings}"></span>
+    </p>
+
+    <p>We understand your concern and want to let you know that we are working on this issue. Our goal is to ensure that you have a <b>better experience next time</b>.</p>
+
+    <p>If you would like to share more details to help us improve, you can fill out this form:</p>
+
+    <a th:href="${chatLink}" class="btn">Provide More Feedback</a>
+
+    <p>Thank you once again for your valuable feedback. We look forward to serving you better!</p>
+
+    <p>Best regards,</p>
+    <p><strong>The Support Team</strong></p>
+
+    <p class="footer">You received this email because you recently made a purchase and provided feedback.</p>
+</div>
+</body>
+</html>

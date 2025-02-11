@@ -1,0 +1,35 @@
+spring:
+  application:
+    name: ecom-user-sentiment-analysis-service
+  ai:
+    ollama:
+      base-url: ${AI_BASE_URL}
+      chat:
+        options:
+          model: ${AI_MODEL_NAME}
+          temperature: ${AI_MODEL_TEMPERATURE}
+#  kafka:
+#    streams:
+#      application-id: ecom-user-sentiment-analysis-service
+#      bootstrap-servers: 127.0.0.1:31806
+#      properties:
+#        default.key.serde: org.apache.kafka.common.serialization.Serdes$StringSerde
+#        default.value.serde: org.springframework.kafka.support.serializer.JsonSerde
+#        auto.offset.reset: earliest
+#        default.deserialization.exception.handler: org.apache.kafka.streams.errors.LogAndContinueExceptionHandler
+#        spring.json.trusted.packages: "com.sp.user_comment_producer_service.dto"
+#        spring.json.add.type.headers: true
+
+
+topics:
+  input: input-topic
+  positive-feedback: positive-sentiment
+  negative-feedback: negative-sentiment
+  improvement-feedback: improvement-sentiment
+  default-output: output-topic
+
+kafka:
+  application-id: ${APP_ID}
+  bootstrap-servers: ${BOOTSTRAP_SERVERS}
+
+
