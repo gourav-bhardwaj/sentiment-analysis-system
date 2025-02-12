@@ -27,9 +27,7 @@ public class UserCommentStreamConfig {
     private final ChatClient chatClient;
     private final JsonSerde<CustomerRatingAndFeedback> customerRatingAndFeedbackJsonSerde;
     private final JsonSerde<UserSentimentAnalysis> userSentimentAnalysisJsonSerde;
-    private static final String COMMENT_SENTIMENT_PROMPT = """
-            Kindly provide sentiment considering given values(NEGATIVE, POSITIVE, MIXED, NEUTRAL)
-            and input comment for the given comment: {comment} and {ratings}""";
+    private static final String COMMENT_SENTIMENT_ANALYSIS_PROMPT = "Kindly provide sentiment from the given values (NEGATIVE, POSITIVE, MIXED, NEUTRAL) based on the input comment: {comment} and rating: {ratings}";
 
     public UserCommentStreamConfig(TopicsConfiguration topicsConfig,
                                    ChatClient chatClient,
@@ -61,7 +59,7 @@ public class UserCommentStreamConfig {
     }
 
     public SentimentAnalysisResponse sentimentAnalysis(CustomerRatingAndFeedback ratingAndFeedback) {
-        PromptTemplate promptTemplate = new PromptTemplate(COMMENT_SENTIMENT_PROMPT);
+        PromptTemplate promptTemplate = new PromptTemplate(COMMENT_SENTIMENT_ANALYSIS_PROMPT);
         promptTemplate.add("comment", ratingAndFeedback.feedbackComment());
         promptTemplate.add("ratings", ratingAndFeedback.ratings());
         log.info("Actual request for sentiment detection : {}", promptTemplate.render());
