@@ -36,7 +36,7 @@ public class SentimentNotificationListener {
     public void sentimentNotification(ConsumerRecord<String, Object> consumerRecord, Acknowledgment acknowledgment) {
         UserSentimentAnalysis sentimentAnalysis = (UserSentimentAnalysis) consumerRecord.value();
         log.info("Sentiment Analysis : {}", sentimentAnalysis);
-        notifyUserBasedOnItsSentiment(sentimentAnalysis);
+        notifyUserBasedOnSentiment(sentimentAnalysis);
         calculateMetrics(sentimentAnalysis);
         acknowledgment.acknowledge();
     }
@@ -50,7 +50,7 @@ public class SentimentNotificationListener {
         }
     }
 
-    private void notifyUserBasedOnItsSentiment(UserSentimentAnalysis sentimentAnalysis) {
+    private void notifyUserBasedOnSentiment(UserSentimentAnalysis sentimentAnalysis) {
         String subject = sentimentAnalysis.sentiment().getSubject();
         Optional<User> userOpt = userRepository.findById(UUID.fromString(sentimentAnalysis.customerId()));
         if (userOpt.isEmpty()) {
