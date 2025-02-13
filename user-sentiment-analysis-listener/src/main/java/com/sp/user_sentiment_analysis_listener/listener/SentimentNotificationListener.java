@@ -54,6 +54,7 @@ public class SentimentNotificationListener {
         String subject = sentimentAnalysis.sentiment().getSubject();
         Optional<User> userOpt = userRepository.findById(UUID.fromString(sentimentAnalysis.customerId()));
         if (userOpt.isEmpty()) {
+            log.error("User not found for the given customer id : {} - Email cannot send", sentimentAnalysis.customerId());
             return;
         }
         User userObj = userOpt.get();
